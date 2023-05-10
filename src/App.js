@@ -24,6 +24,7 @@ const App = () => {
     <div>
       <h1>{titleApp}</h1>
       <ContactList list={contactList}/>
+      {/* { console.log({contactList}) } */}
       <button onClick={() => AddContact({contactList})}>Add Contact</button>
     </div>
   );

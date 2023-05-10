@@ -4,7 +4,7 @@ import './../App.css'
 // Function
 const ContactCard = ({name, email}) => {
   return (
-      <li>{ name } : {email}</li>
+      <li>{ name } : { email }</li>
   );
 }
 
