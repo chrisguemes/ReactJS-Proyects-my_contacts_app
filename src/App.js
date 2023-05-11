@@ -1,31 +1,40 @@
 import logo from './logo.svg';
+import { useEffect, useState } from "react";
 import './App.css';
 
 import ContactList from "./components/ContactList"
-import AddContact from './components/AddContact';
 
 //function App() {
 const App = () => {
 
   // Initialize Data
-  const titleApp = "My First Contacts App"
-  const contactList = [
-    {
-      name : "Chris",
-      email : "aaaa@gmail.com"
-    },
-    {
-      name : "Luis",
-      email : "bbbb@gmail.com"
-    }
-  ]
+  const [contacts, setContacts] = useState([])
+
+  // Set app header
+  const headerApp = "My First Contacts App"
+
+  //Side effect: se ejecuta cada vez que hay una renderización
+  useEffect(() => {
+    // Retrieve data
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(jsonData => {
+        const dataFormatted = jsonData.map(user => {
+          return {
+            name : user.name,
+            email : user.email,
+            phone : user.phone
+          }
+        })
+        // console.log(dataFormatted)
+        setContacts(dataFormatted)
+      })
+  }, [])  // Only First render
 
   return (
     <div>
-      <h1>{titleApp}</h1>
-      <ContactList list={contactList}/>
-      {/* { console.log({contactList}) } */}
-      <button onClick={() => AddContact({contactList})}>Add Contact</button>
+      <h1>{headerApp}</h1>
+      <ContactList dataContacts = { {contacts, setContacts} }/>
     </div>
   );
 }

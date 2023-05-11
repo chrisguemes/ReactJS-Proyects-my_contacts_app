@@ -2,10 +2,14 @@
 import './../App.css'
 
 // Function
-const ContactCard = ({name, email}) => {
-  return (
-      <li>{ name } : { email }</li>
-  );
+const ContactCard = ({contactData}) => {
+    return (
+        <tr>
+            <td>{ contactData.name }</td>
+            <td>{ contactData.email }</td>
+            <td>{ contactData.phone }</td>
+        </tr>
+    );
 }
 
 // Exports
