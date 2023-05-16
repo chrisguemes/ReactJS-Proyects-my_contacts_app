@@ -7,37 +7,20 @@ import svgImg from "./assets/dark.svg"
 import ContactList from "./components/ContactList"
 import ContactForm from './components/ContactForm'
 
+import useFetch from "./hooks/useFetch"
+
 //function App() {
 const App = () => {
-
-  // Initialize Data
-  const [contacts, setContacts] = useState([])
 
   // Dark Mode
   const [darkMode, setDarkMode] = useState(false)
   const handlerDarkMode = (event) => setDarkMode(darkMode? false : true)
-
+  
   // Set app header
   const headerApp = "My First Contacts App"
-
-  //Side effect: se ejecuta cada vez que hay una renderización
-  useEffect(() => {
-    // Retrieve data
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(jsonData => {
-        const dataFormatted = jsonData.map(user => {
-          return {
-            id : user.id,
-            name : user.name,
-            email : user.email,
-            phone : user.phone
-          }
-        })
-        // console.log(dataFormatted)
-        setContacts(dataFormatted)
-      })
-  }, [])  // Only First render
+  
+  // Initialize Data
+  const [contacts, setContacts, loadingContacts, dataError] = useFetch("https://jsonplaceholder.typicode.com/users")
 
   return (
     <div>
@@ -52,7 +35,7 @@ const App = () => {
 
         <section id="content">
           {/* <DarkModeContext.Provider value={ {darkMode} }> */}
-            <AddContactContext.Provider value={ {contacts, setContacts} }>
+            <AddContactContext.Provider value={ {contacts, setContacts, loadingContacts, dataError} }>
               <ContactList />
             </AddContactContext.Provider>
           {/* </DarkModeContext.Provider> */}

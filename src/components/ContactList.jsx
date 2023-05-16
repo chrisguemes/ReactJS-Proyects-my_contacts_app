@@ -8,7 +8,7 @@ import ContactContext from '../context/AddContactContext'
 // Function
 const ContactList = () => {
 
-  const dataContacts = useContext(ContactContext)
+  const {contacts, setContacts, loadingContacts, dataError} = useContext(ContactContext)
 
   const [search, setSearch] = useState("")
 
@@ -16,45 +16,46 @@ const ContactList = () => {
 
   const contactRemove = (id) => {
     console.log("Borrando id:", id)
-    const newContactList = dataContacts
-                            .contacts
-                            .filter(contact => contact.id !== id)
+    const newContactList = contacts.filter(contact => contact.id !== id)
 
-    dataContacts.setContacts(newContactList)  
+    setContacts(newContactList)  
   }
 
   return (
     <div>
       <h2>Lista de Contactos</h2>
       {
-        dataContacts.contacts.length > 0 
+
+        loadingContacts
         ?
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  dataContacts
-                    .contacts
-                    .filter(contact => 
-                        contact.name.length > 0 &&
-                        contact.name.startsWith(search))
-                    .map((contact, index) => 
-                      <ContactCard contactData={contact} removeContact={contactRemove} key={index}/>
-                    )
-                }
-              </tbody>
-            </table>
-          </div>
+          <p>Loading data...</p>
         :
-          <p>No hay contactos cargados</p>
+          dataError?
+            <p>ERROR: Data not found</p>
+          :
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    contacts
+                      .filter(contact => 
+                          contact.name.length > 0 &&
+                          contact.name.startsWith(search))
+                      .map((contact, index) => 
+                        <ContactCard contactData={contact} removeContact={contactRemove} key={index}/>
+                      )
+                  }
+                </tbody>
+              </table>
+            </div>
       }
 
       <h2>Search Bar</h2>
