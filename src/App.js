@@ -9,6 +9,13 @@ import ContactForm from './components/ContactForm'
 
 import useFetch from "./hooks/useFetch"
 
+import { Routes, Route } from "react-router-dom"
+
+import Menu from "./components/Menu"
+import Home from "./components/Home"
+import About from "./components/About"
+import NoMatch from "./components/NoMatch"
+
 //function App() {
 const App = () => {
 
@@ -24,28 +31,30 @@ const App = () => {
 
   return (
     <div>
+
       <div id={darkMode? "containerDark" : "container"}>
 
         <header>
-        <button className="darkButton" onClick={handlerDarkMode}><img alt="" src={svgImg} height ="20" width="20"/></button>
+          <button className="darkButton" onClick={handlerDarkMode}><img alt="" src={svgImg} height ="20" width="20"/></button>
           <h1>{headerApp}</h1>
         </header>
 
         <div className="clearfix"></div>
 
-        <section id="content">
-          {/* <DarkModeContext.Provider value={ {darkMode} }> */}
+        <Menu />
+
+        <div className="clearfix"></div>
+       
+        <Routes>
+          <Route path="/" element={ <Home/> } />
+          <Route path="about" element={ <About/> } />
+          <Route path="contacts" element={ 
             <AddContactContext.Provider value={ {contacts, setContacts, loadingContacts, dataError} }>
               <ContactList />
             </AddContactContext.Provider>
-          {/* </DarkModeContext.Provider> */}
-        </section>
-
-        <aside>
-          <AddContactContext.Provider value={ {contacts, setContacts} }>
-              <ContactForm />
-          </AddContactContext.Provider>
-        </aside>
+          }/>
+          <Route path="*" element={ <NoMatch/> } />
+        </Routes>
 
         <div className="clearfix"></div>
 

@@ -39,6 +39,11 @@ header {
   padding: 40px;
 }
 
+#content h2{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
 aside {
   float: left;
   width: calc(20% - 20px);
@@ -61,6 +66,38 @@ footer {
 .removeBtn {
   margin: 10px;
 }
+
+nav {
+  background: darkblue;
+  height: 50px;
+}
+
+nav ul li {
+  list-style: none;
+  color: lightblue;
+  margin: 10px;
+  float: left;
+}
+
+.link {
+  color: lightblue;
+}
+
+.homeImage {
+  text-align: center;
+  padding: 40px;
+}
+
+.aboutImage {
+  text-align: center;
+  padding: 40px;
+}
+
+.error404Image {
+  text-align: center;
+  padding: 40px;
+}
+
 
 
 

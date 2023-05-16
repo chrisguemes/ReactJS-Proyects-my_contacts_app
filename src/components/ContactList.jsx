@@ -4,6 +4,7 @@ import './../App.css'
 
 import ContactCard from './ContactCard';
 import ContactContext from '../context/AddContactContext'
+import ContactForm from './ContactForm'
 
 // Function
 const ContactList = () => {
@@ -23,44 +24,52 @@ const ContactList = () => {
 
   return (
     <div>
-      <h2>Lista de Contactos</h2>
-      {
-
-        loadingContacts
-        ?
-          <p>Loading data...</p>
-        :
-          dataError?
-            <p>ERROR: Data not found</p>
+      <section id="content">
+        <h2>Lista de Contactos</h2>
+        {
+  
+          loadingContacts
+          ?
+            <p>Loading data...</p>
           :
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    contacts
-                      .filter(contact => 
-                          contact.name.length > 0 &&
-                          contact.name.startsWith(search))
-                      .map((contact, index) => 
-                        <ContactCard contactData={contact} removeContact={contactRemove} key={index}/>
-                      )
-                  }
-                </tbody>
-              </table>
-            </div>
-      }
+            dataError?
+              <p>ERROR: Data not found</p>
+            :
+              <div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      contacts
+                        .filter(contact => 
+                            contact.name.length > 0 &&
+                            contact.name.startsWith(search))
+                        .map((contact, index) => 
+                          <ContactCard contactData={contact} removeContact={contactRemove} key={index}/>
+                        )
+                    }
+                  </tbody>
+                </table>
+              </div>
+        }
+      </section>
 
-      <h2>Search Bar</h2>
-      <p>Filtrar por: <input type="text" onChange={handlerSearch}/></p>
-
+      <aside>
+        <div>
+          <h2>Search Bar</h2>
+          <p>Filtrar por: <input type="text" onChange={handlerSearch}/></p>
+        </div>
+        <div>
+          <ContactForm />
+        </div>
+      </aside>
     </div>
   );
 }
