@@ -1,12 +1,67 @@
-.App {
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  background-color: lightblue;
+  color: darkblue;
+  width: 100%;
+  margin: 0px auto;
+}
+
+#containerDark {
+  background-color: darkblue;
+  color: lightblue;
+  width: 100%;
+  margin: 0px auto;
+}
+
+header {
+  height: 100px;
+  width: 100%;
   text-align: center;
+  line-height: 100px;
 }
 
-.supersaiyan {
-  text-decoration: overline;
-  color: blueviolet;
+.clearfix {
+  clear: both;
 }
 
-.namekiano {
-  color: green;
+.darkButton {
+  float: right;
 }
+
+#content {
+  float: left;
+  width: calc(80% - 80px);
+  min-height: 400px;
+  padding: 40px;
+}
+
+aside {
+  float: left;
+  width: calc(20% - 20px);
+  min-height: 400px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+footer {
+  background: darkblue;
+  color: whitesmoke;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+
+}
+
+.removeBtn {
+  margin: 10px;
+}
+
+
+
+
