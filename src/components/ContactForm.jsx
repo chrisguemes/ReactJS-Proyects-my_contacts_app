@@ -1,8 +1,8 @@
 // Imports
 import { useState, useContext } from 'react';
-import './../App.css'
 
 import ContactContext from '../context/AddContactContext'
+import { Link } from "react-router-dom"
 
 // Function
 const ContactForm = () => {
@@ -30,7 +30,10 @@ const ContactForm = () => {
           <p>Email: <input type='text' onChange={handlerEmail}/></p>
           <p>Movil: <input type='text' onChange={handlerPhone}/></p>
       </div>
-      <button onClick = {contactAdd}>Añadir Contacto</button>
+      <button className="genericBtn" onClick = {contactAdd}>Añadir Contacto</button>
+      <Link to="/contacts">
+        <button className="genericBtn" type="button">Volver</button>
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import '../App.css';
 import error404Img from "../assets/err404.png"
 
 // Function

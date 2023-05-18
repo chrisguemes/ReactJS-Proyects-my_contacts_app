@@ -1,10 +1,11 @@
 // Imports
 import { useState, useContext } from 'react';
-import './../App.css'
 
 import ContactCard from './ContactCard';
 import ContactContext from '../context/AddContactContext'
-import ContactForm from './ContactForm'
+import { Link } from "react-router-dom"
+
+import Button from "@mui/material/Button"
 
 // Function
 const ContactList = () => {
@@ -67,7 +68,9 @@ const ContactList = () => {
           <p>Filtrar por: <input type="text" onChange={handlerSearch}/></p>
         </div>
         <div>
-          <ContactForm />
+        <Link className="link" to="/addcontact">
+          <Button variant="contained">Añadir Contacto</Button>
+        </Link>
         </div>
       </aside>
     </div>

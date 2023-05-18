@@ -1,5 +1,5 @@
-import '../App.css';
 import ctaJpg from "../assets/CTA.jpg"
+import styled from "styled-components"
 
 // Function
 const About = () => {

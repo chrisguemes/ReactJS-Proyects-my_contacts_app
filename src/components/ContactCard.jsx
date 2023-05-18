@@ -1,15 +1,24 @@
-// Imports
-import './../App.css'
-import deletePng from "../assets/delete.png"
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 
 // Function
 const ContactCard = ({contactData, removeContact}) => {
     return (
         <tr>
-            <td><button className="removeBtn" onClick={() => removeContact(contactData.id)}><img alt="" src={deletePng} height ="20" width="20"/></button></td>
-            <td>{ contactData.name }</td>
-            <td>{ contactData.email }</td>
-            <td>{ contactData.phone }</td>
+          <td>
+            <Button onClick={() => removeContact(contactData.id)} variant="contained" startIcon={<DeleteIcon />} size='small'>
+              Delete
+            </Button>
+          </td>
+          <td>
+            <Button  variant="contained" startIcon={<EditNoteOutlinedIcon />} size='small'>
+              Edit
+            </Button>
+          </td>
+          <td>{ contactData.name }</td>
+          <td>{ contactData.email }</td>
+          <td>{ contactData.phone }</td>
         </tr>
     );
 }

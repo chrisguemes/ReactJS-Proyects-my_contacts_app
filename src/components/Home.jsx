@@ -1,4 +1,3 @@
-import '../App.css';
 import homeJpg from "../assets/home.jpg"
 
 // Function
